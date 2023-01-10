@@ -18,7 +18,8 @@ $slim->get('/', function (ServerRequestInterface $request, ResponseInterface $re
 });
 
 $slim->get('/admin', function (ServerRequestInterface $request, ResponseInterface $response): ResponseInterface {
-    $response->getBody()->write('Hello, Admin!');
+    $login = $request->getAttribute('USER', 'Admin');
+    $response->getBody()->write("Hello, {$login}!");
     return $response;
 })->add($auth);
 
