@@ -1,0 +1,24 @@
+{
+  "name": "freezemage0/slim-middleware-snippet",
+  "description": "Snippet of middleware that generates response instead of request handler.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Freezemage",
+      "email": "freezemage0@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Freezemage\\MiddlewareSnippet\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.4 | ^8",
+    "ext-fileinfo": "*",
+    "slim/slim": "^4",
+    "slim/http": "^1.3",
+    "slim/psr7": "^1.6"
+  }
+}
