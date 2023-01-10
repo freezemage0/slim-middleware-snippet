@@ -12,7 +12,9 @@ require __DIR__ . '/vendor/autoload.php';
 $slim = AppFactory::create();
 
 $auth = new AuthorizationMiddleware($slim->getResponseFactory(), 'freezemage0', '123');
-$slim->get('/', function (ServerRequestInterface $request, ResponseInterface $response): ResponseInterface {
+$notAllowed = new \Freezemage\MiddlewareSnippet\RoutingErrorMiddleware($slim->getResponseFactory());
+
+$slim->post('/', function (ServerRequestInterface $request, ResponseInterface $response): ResponseInterface {
     $response->getBody()->write('Hello, World!');
     return $response;
 });
@@ -22,5 +24,7 @@ $slim->get('/admin', function (ServerRequestInterface $request, ResponseInterfac
     $response->getBody()->write("Hello, {$login}!");
     return $response;
 })->add($auth);
+
+$slim->add($notAllowed);
 
 $slim->run();
